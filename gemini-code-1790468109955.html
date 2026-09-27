@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buddha Boutta Bag | Official Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#030303', // Deeper, more premium black
+                        cardbg: '#0a0a0c', // Subtle offset for cards
+                        accent: '#a855f7'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'slide-in-right': 'slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(100%)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        glowPulse: {
+                            '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Hide scrollbar for a cleaner look in the cart */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #71717a; }
+        
+        .glass-panel {
+            background: rgba(10, 10, 12, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-darkbg text-zinc-100 min-h-screen flex flex-col selection:bg-purple-500/30 selection:text-purple-200">
+
+    <header class="sticky top-0 z-50 glass-panel border-b-0 shadow-lg shadow-black/50 transition-all duration-300">
+        <!-- Subtle gradient border at the bottom of header -->
+        <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500/20 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative">
+            <div class="flex items-center space-x-4 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-900 to-black border border-purple-500/30 flex items-center justify-center font-bold text-xl tracking-tighter text-white overflow-hidden shadow-[0_0_15px_rgba(168,85,247,0.2)] group-hover:shadow-[0_0_25px_rgba(168,85,247,0.4)] transition-all duration-300">
+                    <img src="image_43.jpg" alt="BBB Logo" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg sm:text-xl tracking-widest text-white uppercase group-hover:text-purple-400 transition-colors duration-300">Buddha Boutta Bag</h1>
+                    <p class="text-[10px] sm:text-xs text-zinc-500 uppercase tracking-widest font-medium">Live life & open your eyes 👀</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3 sm:space-x-5">
+                <a href="https://instagram.com/buddha.boutaa.bag" target="_blank" class="text-zinc-500 hover:text-white transition-colors text-xl p-2 drop-shadow-md" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <button onclick="toggleCart()" class="relative group bg-white/5 hover:bg-white/10 text-white px-5 py-2.5 rounded-xl flex items-center space-x-2 transition-all duration-300 border border-white/10 hover:border-purple-500/50">
+                    <i class="fas fa-shopping-bag text-zinc-400 group-hover:text-purple-400 transition-colors"></i>
+                    <span class="hidden sm:inline font-semibold text-sm tracking-wide">Cart</span>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full shadow-[0_0_10px_rgba(168,85,247,0.5)]">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Background GIF Section integrated right next to the New Collection header/hero -->
+    <section class="relative py-28 px-4 overflow-hidden flex items-center justify-center min-h-[55vh]">
+        <!-- GIF Backdrop -->
+        <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <img src="giphy.gif" alt="Animated Backdrop" class="w-full h-full object-cover opacity-50 scale-105">
+            <div class="absolute inset-0 bg-gradient-to-b from-darkbg/80 via-darkbg/50 to-darkbg"></div>
+        </div>
+
+        <!-- Background Glow Effects -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[120px] pointer-events-none animate-glow-pulse"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10 animate-slide-up">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-[10px] font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
+                <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                All Shirts • $25.00 limited time
+            </div>
+            <h2 class="text-5xl sm:text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-500 mb-6 drop-shadow-2xl">
+                NEW COLLECTION
+            </h2>
+            <p class="text-zinc-300 text-sm sm:text-base max-w-lg mx-auto mb-10 leading-relaxed font-light drop-shadow">
+                Heavyweight custom garments. Precision cuts, vivid color options, and premium textures. More coming soon <br class="hidden sm:block"><strong class="text-white font-medium">Cash App Zelle Apple pay payment.</strong>
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 items-center">
+                <a href="#shop" class="w-full sm:w-auto bg-zinc-100 hover:bg-white text-zinc-950 font-bold px-8 py-3.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:-translate-y-1">
+                    Explore Drops <i class="fas fa-arrow-down text-sm"></i>
+                </a>
+                <a href="https://instagram.com/buddha.boutaa.bag" target="_blank" class="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white font-semibold px-8 py-3.5 rounded-xl border border-white/10 hover:border-purple-500/30 transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm">
+                    <i class="fab fa-instagram text-purple-400"></i> Follow Updates
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full relative z-10" id="shop">
+        <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 animate-slide-up" style="animation-delay: 0.1s;">
+            <div>
+                <h3 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+                    Available Drops
+                </h3>
+                <p class="text-sm text-zinc-500 mt-2 font-medium">Select graphic/color and size before adding to cart.</p>
+            </div>
+            <div class="hidden sm:block text-right">
+                <span class="text-xl font-bold text-zinc-300 block">$25.00</span>
+                <span class="text-xs text-purple-400 font-semibold tracking-wider uppercase">Flat Rate</span>
+            </div>
+        </div>
+
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
+            
+            <div class="product-card glass-panel rounded-[2rem] overflow-hidden hover:border-purple-500/40 transition-all duration-500 flex flex-col group shadow-2xl hover:shadow-[0_0_40px_-10px_rgba(168,85,247,0.15)] animate-slide-up" style="animation-delay: 0.2s;" data-id="1" data-base-name="Striped Ruffled Buddha Longsleeve" data-price="25.00">
+                <div class="relative aspect-[4/5] overflow-hidden bg-[#050505] select-none" id="carousel-1" data-current="0">
+                    <div class="flex w-full h-full transition-transform duration-500 cubic-bezier(0.4, 0, 0.2, 1)" id="carousel-track-1">
+                        <img id="img-1-front" src="image_17.jpg" alt="Striped Ruffled Buddha Longsleeve - Front" class="w-full h-full object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x1000/0a0a0c/c084fc?text=Striped+Buddha'">
+                        <img id="img-1-back" src="image_11.jpg" alt="Striped Ruffled Buddha Longsleeve - Back" class="w-full h-full object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x1000/0a0a0c/c084fc?text=Striped+Buddha'">
+                    </div>
+                    
+                    <!-- Floating Labels -->
+                    <div class="absolute top-4 left-4 flex gap-2">
+                        <span class="bg-purple-600/90 backdrop-blur text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">New</span>
+                    </div>
+                    <span id="side-label-1" class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest border border-white/10 pointer-events-none transition-all">Front</span>
+
+                    <!-- Sleek Carousel Controls -->
+                    <button onclick="carouselPrev(1)" aria-label="Previous view" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/80 backdrop-blur text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 border border-white/10 hover:scale-110">
+                        <i class="fas fa-chevron-left text-sm"></i>
+                    </button>
+                    <button onclick="carouselNext(1)" aria-label="Next view" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/80 backdrop-blur text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 border border-white/10 hover:scale-110">
+                        <i class="fas fa-chevron-right text-sm"></i>
+                    </button>
+
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full border border-white/5">
+                        <button onclick="carouselGoTo(1, 0)" aria-label="Show front" class="carousel-dot-1 w-2 h-2 rounded-full bg-white shadow-[0_0_5px_rgba(255,255,255,0.8)] transition-all duration-300"></button>
+                        <button onclick="carouselGoTo(1, 1)" aria-label="Show back" class="carousel-dot-1 w-2 h-2 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300"></button>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 flex flex-col flex-grow relative">
+                    <!-- Subtle background logo watermark -->
+                    <div class="absolute right-4 bottom-24 text-6xl font-black text-white/[0.02] pointer-events-none tracking-tighter">BBB prodution</div>
+                    
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-xl text-white tracking-tight leading-tight">Striped Ruffled<br>Buddha Longsleeve</h4>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-8 flex-grow leading-relaxed font-light">Longsleeve striped tee with ruffled raw edges and iconic Buddha back logo. Swipe photo to flip front/back.</p>
+
+                    <!-- Color Selector (Sleek Pills) -->
+                    <div class="mb-5">
+                        <label class="block text-[10px] font-bold text-zinc-500 mb-2.5 uppercase tracking-widest">Select Color</label>
+                        <div class="flex gap-3 color-selector">
+                            <button onclick="selectColor(this, 1, 'Black/White Stripes')" class="color-btn flex-1 py-2.5 rounded-xl border border-purple-500/50 text-xs font-bold bg-purple-500/10 text-white transition-all duration-300">Black / White</button>
+                            <button onclick="selectColor(this, 1, 'Grey Stripes')" class="color-btn flex-1 py-2.5 rounded-xl border border-white/10 text-xs font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-zinc-200">Grey</button>
+                        </div>
+                    </div>
+
+                    <!-- Size Selector (Minimal Boxes) -->
+                    <div class="mb-8">
+                        <label class="block text-[10px] font-bold text-zinc-500 mb-2.5 uppercase tracking-widest">Select Size</label>
+                        <div class="flex gap-2 size-selector">
+                            <button onclick="selectSize(this, 'S')" class="size-btn w-12 h-12 rounded-xl border border-white/10 text-sm font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-white">S</button>
+                            <button onclick="selectSize(this, 'M')" class="size-btn w-12 h-12 rounded-xl border border-white/10 text-sm font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-white">M</button>
+                            <button onclick="selectSize(this, 'L')" class="size-btn w-12 h-12 rounded-xl border border-purple-500/50 text-sm font-bold bg-purple-500/10 text-white shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-300">L</button>
+                            <button onclick="selectSize(this, 'XL')" class="size-btn w-12 h-12 rounded-xl border border-white/10 text-sm font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-white">XL</button>
+                        </div>
+                    </div>
+                    
+                    <button onclick="addToCart(this)" class="w-full bg-white hover:bg-zinc-200 text-black font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-0.5 relative overflow-hidden group/btn">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite]"></div>
+                        <i class="fas fa-cart-plus"></i> 
+                        <span>Add to Cart — $25</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card glass-panel rounded-[2rem] overflow-hidden hover:border-purple-500/40 transition-all duration-500 flex flex-col group shadow-2xl hover:shadow-[0_0_40px_-10px_rgba(168,85,247,0.15)] animate-slide-up" style="animation-delay: 0.3s;" data-id="2" data-base-name="Drugs Are Bad Tee" data-price="25.00">
+                <div class="relative aspect-[4/5] overflow-hidden bg-[#050505] select-none" id="carousel-2" data-current="0">
+                    <div class="flex w-full h-full transition-transform duration-500 cubic-bezier(0.4, 0, 0.2, 1)" id="carousel-track-2">
+                        <img id="img-2-front" src="image_12.jpg" alt="Drugs Are Bad Tee - Front" class="w-full h-full object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x1000/0a0a0c/c084fc?text=Drugs+Are+Bad'">
+                        <img id="img-2-back" src="image_18.jpg" alt="Drugs Are Bad Tee - Back" class="w-full h-full object-cover flex-shrink-0 group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/800x1000/0a0a0c/c084fc?text=Drugs+Are+Bad'">
+                    </div>
+                    
+                    <div class="absolute top-4 left-4 flex gap-2">
+                        <span class="bg-white text-black text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">Best Seller</span>
+                    </div>
+                    <span id="side-label-2" class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest border border-white/10 pointer-events-none transition-all">Front</span>
+
+                    <button onclick="carouselPrev(2)" aria-label="Previous view" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/80 backdrop-blur text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 border border-white/10 hover:scale-110">
+                        <i class="fas fa-chevron-left text-sm"></i>
+                    </button>
+                    <button onclick="carouselNext(2)" aria-label="Next view" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/80 backdrop-blur text-white w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 border border-white/10 hover:scale-110">
+                        <i class="fas fa-chevron-right text-sm"></i>
+                    </button>
+
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full border border-white/5">
+                        <button onclick="carouselGoTo(2, 0)" aria-label="Show front" class="carousel-dot-2 w-2 h-2 rounded-full bg-white shadow-[0_0_5px_rgba(255,255,255,0.8)] transition-all duration-300"></button>
+                        <button onclick="carouselGoTo(2, 1)" aria-label="Show back" class="carousel-dot-2 w-2 h-2 rounded-full bg-white/30 hover:bg-white/60 transition-all duration-300"></button>
+                    </div>
+                </div>
+                <div class="p-6 sm:p-8 flex flex-col flex-grow relative">
+                    <div class="absolute right-4 bottom-24 text-6xl font-black text-white/[0.02] pointer-events-none tracking-tighter">BBB</div>
+                    
+                    <div class="flex justify-between items-start mb-3">
+                        <h4 class="font-bold text-xl text-white tracking-tight leading-tight">Drugs Are Bad<br>Graphic Tee</h4>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-8 flex-grow leading-relaxed font-light">Heavyweight mineral wash cotton tee with "IYKYK" front branding and detailed graphic back print.</p>
+
+                    <!-- Color / Graphic Selector -->
+                    <div class="mb-5">
+                        <label class="block text-[10px] font-bold text-zinc-500 mb-2.5 uppercase tracking-widest">Select Graphic Style</label>
+                        <div class="flex gap-2 flex-wrap color-selector">
+                            <button onclick="selectColor(this, 2, 'Globe Graphic (Orange)')" class="color-btn px-3.5 py-2 rounded-xl border border-purple-500/50 text-[11px] font-bold bg-purple-500/10 text-white transition-all duration-300 shadow-[0_0_10px_rgba(168,85,247,0.1)]">globe</button>
+                            <button onclick="selectColor(this, 2, 'Police Arrest Graphic (Green)')" class="color-btn px-3.5 py-2 rounded-xl border border-white/10 text-[11px] font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-white">spidey</button>
+                            <button onclick="selectColor(this, 2, 'Room Scene Graphic (Purple)')" class="color-btn px-3.5 py-2 rounded-xl border border-white/10 text-[11px] font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-white">snowywhite</button>
+                        </div>
+                    </div>
+
+                    <!-- Size Selector -->
+                    <div class="mb-8">
+                        <label class="block text-[10px] font-bold text-zinc-500 mb-2.5 uppercase tracking-widest">Select Size</label>
+                        <div class="flex gap-2 size-selector">
+                            <button onclick="selectSize(this, 'S')" class="size-btn w-12 h-12 rounded-xl border border-white/10 text-sm font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-white">S</button>
+                            <button onclick="selectSize(this, 'M')" class="size-btn w-12 h-12 rounded-xl border border-white/10 text-sm font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-white">M</button>
+                            <button onclick="selectSize(this, 'L')" class="size-btn w-12 h-12 rounded-xl border border-purple-500/50 text-sm font-bold bg-purple-500/10 text-white shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-300">L</button>
+                            <button onclick="selectSize(this, 'XL')" class="size-btn w-12 h-12 rounded-xl border border-white/10 text-sm font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-white">XL</button>
+                        </div>
+                    </div>
+                    <button onclick="addToCart(this)" class="w-full bg-white hover:bg-zinc-200 text-black font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-0.5 relative overflow-hidden group/btn">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite]"></div>
+                        <i class="fas fa-cart-plus"></i> 
+                        <span>Add to Cart — $25</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="mt-20 border-t border-white/5 py-12 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <div class="w-10 h-10 mx-auto rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center font-bold text-sm text-zinc-500 mb-6 overflow-hidden">
+                <img src="image_43.jpg" alt="BBB Logo" class="w-full h-full object-cover">
+            </div>
+            <p class="text-xs text-zinc-600 font-medium tracking-wide uppercase">&copy; 2026 Buddha Boutta Bag (B.B.B.production's).</p>
+            <p class="text-xs text-zinc-700 mt-2">Live life and open your eyes 👀</p>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="fixed inset-0 z-[100] hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="toggleCart()"></div>
+        <!-- Drawer Panel -->
+        <div class="absolute top-0 right-0 h-full w-full max-w-md bg-[#050505] border-l border-white/10 shadow-2xl flex flex-col animate-slide-in-right">
+            <div class="flex items-center justify-between p-6 border-b border-white/5 bg-[#0a0a0c]">
+                <h3 class="font-black text-xl text-white tracking-tight flex items-center gap-3">
+                    Your Cart <span class="bg-purple-600/20 text-purple-400 text-xs px-2.5 py-1 rounded-md border border-purple-500/20" id="drawer-count">0</span>
+                </h3>
+                <button onclick="toggleCart()" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white flex items-center justify-center transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-4">
+                <div class="flex flex-col items-center justify-center h-full text-zinc-600">
+                    <i class="fas fa-box-open text-4xl mb-4 opacity-20"></i>
+                    <p class="font-medium text-sm">Your cart is empty.</p>
+                </div>
+            </div>
+            
+            <div class="p-6 bg-[#0a0a0c] border-t border-white/5">
+                <div class="flex justify-between items-end mb-6">
+                    <span class="text-zinc-500 text-sm font-bold uppercase tracking-widest">Subtotal</span>
+                    <span id="cart-total" class="text-3xl font-black text-white tracking-tighter">$0.00</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-500 hover:to-purple-700 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:shadow-[0_0_30px_rgba(168,85,247,0.5)] flex items-center justify-center gap-3 hover:-translate-y-0.5">
+                    <i class="fab fa-instagram text-lg"></i> 
+                    <span>Checkout via DM</span>
+                </button>
+                <p class="text-center text-[10px] text-zinc-600 mt-4 uppercase tracking-widest font-bold">Secure Order Processing</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="msg-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeMsgModal()"></div>
+        <div class="relative bg-[#0a0a0c] border border-white/10 rounded-2xl max-w-sm w-full p-8 text-center shadow-[0_0_50px_-12px_rgba(0,0,0,1)] animate-fade-in">
+            <div id="msg-icon" class="w-16 h-16 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center mx-auto mb-5 text-2xl border border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.15)]">
+                <i class="fas fa-check"></i>
+            </div>
+            <h4 id="msg-title" class="font-black text-2xl text-white mb-2 tracking-tight">Success</h4>
+            <p id="msg-text" class="text-zinc-400 text-sm mb-8 leading-relaxed">Item added to cart successfully!</p>
+            <button onclick="closeMsgModal()" class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3.5 rounded-xl transition-all duration-300">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let selectedSizes = { 1: 'L', 2: 'L' };
+        let selectedColors = {
+            1: 'Black/White Stripes',
+            2: 'Globe Graphic (Orange)'
+        };
+
+        const carouselImages = {
+            1: {
+                'Black/White Stripes': { front: 'image_17.jpg', back: 'image_11.jpg' },
+                'Grey Stripes': { front: 'image_15.jpg', back: 'image_16.jpg' }
+            },
+            2: {
+                'Globe Graphic (Orange)': { front: 'image_12.jpg', back: 'image_18.jpg' },
+                'Police Arrest Graphic (Green)': { front: 'image_20.jpg', back: 'image_19.jpg' },
+                'Room Scene Graphic (Purple)': { front: 'image_22.jpg', back: 'image_21.jpg' }
+            }
+        };
+        let carouselState = {};
+
+        function setCarouselIndex(id, index) {
+            const track = document.getElementById(`carousel-track-${id}`);
+            if (!track) return;
+            const total = 2;
+            index = ((index % total) + total) % total;
+            carouselState[id] = index;
+            track.style.transform = `translateX(-${index * 100}%)`;
+
+            const label = document.getElementById(`side-label-${id}`);
+            if (label) label.innerText = index === 0 ? 'Front' : 'Back';
+
+            document.querySelectorAll(`.carousel-dot-${id}`).forEach((dot, i) => {
+                dot.className = `carousel-dot-${id} w-2 h-2 rounded-full transition-all duration-300 ${i === index ? 'bg-white shadow-[0_0_5px_rgba(255,255,255,0.8)]' : 'bg-white/30 hover:bg-white/60'}`;
+            });
+        }
+
+        function carouselNext(id) { setCarouselIndex(id, (carouselState[id] || 0) + 1); }
+        function carouselPrev(id) { setCarouselIndex(id, (carouselState[id] || 0) - 1); }
+        function carouselGoTo(id, index) { setCarouselIndex(id, index); }
+
+        function updateCarouselImages(id) {
+            const imgs = carouselImages[id] && carouselImages[id][selectedColors[id]];
+            if (!imgs) return;
+            const frontEl = document.getElementById(`img-${id}-front`);
+            const backEl = document.getElementById(`img-${id}-back`);
+            if (frontEl) frontEl.src = imgs.front;
+            if (backEl) backEl.src = imgs.back;
+            setCarouselIndex(id, 0);
+        }
+
+        function attachSwipe(id) {
+            const el = document.getElementById(`carousel-${id}`);
+            if (!el) return;
+            let startX = 0;
+            let dragging = false;
+
+            el.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                dragging = true;
+            }, { passive: true });
+
+            el.addEventListener('touchend', (e) => {
+                if (!dragging) return;
+                dragging = false;
+                const deltaX = e.changedTouches[0].clientX - startX;
+                if (Math.abs(deltaX) > 40) {
+                    deltaX < 0 ? carouselNext(id) : carouselPrev(id);
+                }
+            });
+
+            el.addEventListener('mousedown', (e) => {
+                startX = e.clientX;
+                dragging = true;
+            });
+
+            el.addEventListener('mouseup', (e) => {
+                if (!dragging) return;
+                dragging = false;
+                const deltaX = e.clientX - startX;
+                if (Math.abs(deltaX) > 40) {
+                    deltaX < 0 ? carouselNext(id) : carouselPrev(id);
+                }
+            });
+
+            el.addEventListener('mouseleave', () => { dragging = false; });
+        }
+
+        Object.keys(carouselImages).forEach(id => attachSwipe(id));
+
+        function selectSize(btn, size) {
+            const container = btn.closest('.size-selector');
+            container.querySelectorAll('.size-btn').forEach(b => {
+                b.className = "size-btn w-12 h-12 rounded-xl border border-white/10 text-sm font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-white";
+            });
+            btn.className = "size-btn w-12 h-12 rounded-xl border border-purple-500/50 text-sm font-bold bg-purple-500/10 text-white shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-300";
+            
+            const card = btn.closest('.product-card');
+            const id = card.getAttribute('data-id');
+            selectedSizes[id] = size;
+        }
+
+        function selectColor(btn, id, colorName, imageSrc) {
+            const container = btn.closest('.color-selector');
+            container.querySelectorAll('.color-btn').forEach(b => {
+                const isProd2 = id == 2;
+                const paddingClass = isProd2 ? "px-3.5 py-2" : "flex-1 py-2.5";
+                const textClass = isProd2 ? "text-[11px]" : "text-xs";
+                b.className = `color-btn ${paddingClass} rounded-xl border border-white/10 ${textClass} font-bold bg-white/5 hover:bg-white/10 transition-all duration-300 text-zinc-400 hover:text-white`;
+            });
+            
+            const isProd2 = id == 2;
+            const activePadding = isProd2 ? "px-3.5 py-2 shadow-[0_0_10px_rgba(168,85,247,0.1)]" : "flex-1 py-2.5";
+            const activeTextClass = isProd2 ? "text-[11px]" : "text-xs";
+            
+            btn.className = `color-btn ${activePadding} rounded-xl border border-purple-500/50 ${activeTextClass} font-bold bg-purple-500/10 text-white transition-all duration-300`;
+
+            selectedColors[id] = colorName;
+
+            if (carouselImages[id]) {
+                updateCarouselImages(id);
+            } else {
+                const imgElem = document.getElementById(`img-${id}`);
+                if (imgElem) imgElem.src = imageSrc;
+            }
+        }
+
+        function addToCart(btn) {
+            const card = btn.closest('.product-card');
+            const id = card.getAttribute('data-id');
+            const baseName = card.getAttribute('data-base-name');
+            const price = parseFloat(card.getAttribute('data-price'));
+            const size = selectedSizes[id] || 'L';
+            const color = selectedColors[id] || 'Default';
+
+            const fullName = `${baseName} (${color}) [Size: ${size}]`;
+            const existingItem = cart.find(item => item.id === id && item.size === size && item.color === color);
+            
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ id, name: fullName, price, qty: 1, size, color });
+            }
+
+            updateCartUI();
+            showModal("Added to Cart", `${baseName} (${color}, Size: ${size}) successfully added.`);
+        }
+
+        function updateCartUI() {
+            const countElem = document.getElementById('cart-count');
+            const drawerCount = document.getElementById('drawer-count');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            countElem.innerText = totalCount;
+            drawerCount.innerText = totalCount;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full text-zinc-600 pt-10">
+                        <i class="fas fa-box-open text-5xl mb-4 opacity-20"></i>
+                        <p class="font-medium text-sm">Your cart is empty.</p>
+                    </div>`;
+                cartTotal.innerText = '$0.00';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                html += `
+                    <div class="p-4 bg-white/5 border border-white/5 rounded-xl flex items-center justify-between group hover:bg-white/10 transition-colors">
+                        <div class="flex-grow pr-4">
+                            <h5 class="font-bold text-sm text-white mb-1 leading-tight">${item.name}</h5>
+                            <div class="flex items-center gap-3">
+                                <p class="text-purple-400 text-sm font-black">$${item.price.toFixed(2)}</p>
+                                <span class="text-zinc-500 text-xs font-bold bg-black/50 px-2 py-0.5 rounded-md">Qty: ${item.qty}</span>
+                            </div>
+                        </div>
+                        <button onclick="removeItem(${index})" class="w-8 h-8 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all flex-shrink-0">
+                            <i class="fas fa-trash-alt text-xs"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            cartItemsContainer.innerHTML = html;
+            cartTotal.innerText = `$${total.toFixed(2)}`;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function showModal(title, text) {
+            document.getElementById('msg-title').innerText = title;
+            document.getElementById('msg-text').innerText = text;
+            document.getElementById('msg-modal').classList.remove('hidden');
+        }
+
+        function closeMsgModal() {
+            document.getElementById('msg-modal').classList.add('hidden');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showModal("Cart is Empty", "Please add at least one item before checking out.");
+                return;
+            }
+            let summary = "Hey! I'd like to order the following from Buddha Boutta Bag:\n\n";
+            let total = 0;
+            cart.orderText = cart.forEach(item => {
+                summary += `- ${item.qty}x ${item.name} ($${(item.price * item.qty).toFixed(2)})\n`;
+                total += item.price * item.qty;
+            });
+            summary += `\nTotal: $${total.toFixed(2)}`;
+
+            const textarea = document.createElement('textarea');
+            textarea.value = summary;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            showModal("Order Ready!", "Order details copied to clipboard. Redirecting to Instagram DM @buddha.boutaa.bag to finish checkout...");
+            setTimeout(() => {
+                window.open('https://instagram.com/buddha.boutaa.bag', '_blank');
+                closeMsgModal();
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
